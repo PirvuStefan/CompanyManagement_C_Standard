@@ -1,5 +1,3 @@
 # ninja log v6
-0	46	1735918643020228374	CMakeFiles/proiect_pclp_sistem_bancar.dir/library.c.o	6d2ab5f2e55dd877
-46	68	1735918643065974237	libproiect_pclp_sistem_bancar.a	ceb6d1fe8e7acb12
-2	50	1735918784195198115	CMakeFiles/proiect_pclp_sistem_bancar.dir/library.c.o	6d2ab5f2e55dd877
-50	70	1735918784243297587	libproiect_pclp_sistem_bancar.a	ceb6d1fe8e7acb12
+1	47	1735927071826679851	CMakeFiles/proiect_pclp_sistem_bancar.dir/library.c.o	6d2ab5f2e55dd877
+48	70	1735927071873569664	libproiect_pclp_sistem_bancar.a	ceb6d1fe8e7acb12

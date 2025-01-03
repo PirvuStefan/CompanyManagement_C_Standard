@@ -3,4 +3,4 @@ project(proiect_pclp_sistem_bancar C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_library(proiect_pclp_sistem_bancar STATIC library.c)
+add_library(proiect_pclp_sistem_bancar STATIC main.c)
