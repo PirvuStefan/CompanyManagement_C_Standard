@@ -60,17 +60,13 @@ void initialize_employees() {
         return;
     }
 
-    int company_index;
     char buffer[10];
     char name[50], role[50];
     int id, salary, is_retired;
 
-    while (fgets(buffer, sizeof(buffer), file) != NULL) {
-        company_index = atoi(buffer);
-        if (company_index < 0 || company_index >= num_companies) {
-            fprintf(stderr, "Invalid company index\n");
-            continue;
-        }
+
+
+        for(int company_index = 0; company_index < num_companies;company_index++){
         for (int i = 0; i < companies[company_index].number_of_employees; i++) {
             fgets(buffer, sizeof(buffer), file);
             id = atoi(buffer);
@@ -89,6 +85,8 @@ void initialize_employees() {
             employee.is_retired = is_retired;
             companies[company_index].employees[i] = employee;
         }
+
+
     }
 
     fclose(file);
@@ -124,7 +122,11 @@ void add_company() {
         char name[50];
         scanf("%s", name);
         strcpy(companies[num_companies].employees[i].name, name);
-        companies[num_companies].employees[i].id = i + 1; // Initialize employee id
+        int test = 100000 + rand() % 900000;
+        test = test + rand() % 7;
+        test = test + rand() % 11;
+        // to make true random id ( at least closer than before)
+        companies[num_companies].employees[i].id = test + i + 1; // Initialize employee id
     }
     printf("Type the roles of the employees:\n");
     for (int i = 0; i < number_of_employees; i++) {
@@ -149,7 +151,7 @@ void add_company() {
         perror("Failed to open companies_number_of_employees.txt");
         return;
     }
-    fprintf(file, "%d\n", number_of_employees);
+    fprintf(file, "\n%d", number_of_employees);
     fclose(file);
     num_companies++;
 
@@ -159,22 +161,67 @@ void add_company() {
         return;
     }
     for (int i = 0; i < number_of_employees; i++) {
-        fprintf(file, "%d\n%d\n%s\n%s\n%d\n%d\n", num_companies - 1, companies[num_companies - 1].employees[i].id, companies[num_companies - 1].employees[i].name, companies[num_companies - 1].employees[i].role, companies[num_companies - 1].employees[i].salary, companies[num_companies - 1].employees[i].is_retired);
+        fprintf(file, "%d\n%s\n%s\n%d\n%d\n", companies[num_companies - 1].employees[i].id, companies[num_companies - 1].employees[i].name, companies[num_companies - 1].employees[i].role, companies[num_companies - 1].employees[i].salary, companies[num_companies - 1].employees[i].is_retired);
     }
     fclose(file);
+    file = fopen("companies.txt", "a");
+    fprintf(file, "\n%s", name);
+    fclose(file);
     printf("Company %s added successfully.\n", name);
+
+    file = fopen("companies.txt", "r+");
+    fseek(file, 0, SEEK_SET);
+    fprintf(file, "%d\n", num_companies);
+    fseek(file, 0, SEEK_END);
+    fprintf(file, "%s\n", name);
+    fclose(file);
+}
+
+void commanding(void) {
+    printf("Welcome to the company management system!\n");
+    printf("Here are the commands you can use:\n\n");
+    printf("close - to close the program\n");
+    printf("add  - to add a company\n");
+    printf("show - to show the employees of a company ( followed by the number associated with the company )\n");
+
 }
 
 int main(void) {
+    initialize_companies();
+    initialize_employees();
+    //show_companies();
+    printf("Type 'help' to see the commands you can use.\n");
+
+
     while (true) {
         initialize_companies();
         initialize_employees();
-        show_companies();
         char command[50];
         scanf("%s", command);
         if (strcmp(command, "close") == 0)
             return 0;
+        if(strcmp(command, "help") == 0)
+            commanding();
         if (strcmp(command, "add") == 0)
             add_company();
+        if(strcmp(command, "show") == 0){
+            int index;
+            scanf("%d", &index);
+            if(index >= num_companies){
+                printf("Invalid index.\n");
+                continue;
+            }
+            printf("The employees of the company %s are:\n", companies[index].name);
+            for(int i = 0; i < companies[index].number_of_employees; i++){
+                printf("Employee %d:\n", i + 1);
+                printf("Name: %s\n", companies[index].employees[i].name);
+                printf("Role: %s\n", companies[index].employees[i].role);
+                printf("Salary: %d\n", companies[index].employees[i].salary);
+                if(companies[index].employees[i].is_retired == 1)
+                    printf("Retired: Yes\n");
+                else
+                    printf("Retired: No\n");
+            }
+        }
     }
 }
