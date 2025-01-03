@@ -34,8 +34,7 @@ show-r <index>: Show only non-retired employees of the company at the specified 
 show-l: Show the list of all registered companies.
 close: Close the program.
 
-This is done strictly for a college project.
-
 ## License
 
+This is done strictly for a college project.
 If it was not obvious, this project is licensed under the MIT License.You can do whatever you want with it, modify it, distribute it.
