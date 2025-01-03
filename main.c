@@ -90,7 +90,7 @@ void show_companies() {
     printf("The following companies are registered:\n");
     for (int i = 0; i < n; i++) {
         printf("Company: %s\n", companies[i].name);
-    } //f
+    } //ffafafa
     printf("Type add in the terminal to add a new company.\n");
     printf("Type show and the number associated with the company to see the employees of that company (indexing from 0).\n");
     printf("Type 'close' to close the program.\n");
