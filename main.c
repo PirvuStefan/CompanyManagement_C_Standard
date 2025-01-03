@@ -19,9 +19,6 @@ struct company {
 
 int num_companies;
 struct company companies[1001];
-int id[1001];
-
-
 
 void initialize_companies() {
     FILE *file = fopen("companies.txt", "r");
@@ -30,10 +27,10 @@ void initialize_companies() {
         return;
     }
 
-    scanf("%d", &num_companies);
-
-
-
+    char buffer[10];
+    if (fgets(buffer, sizeof(buffer), file) != NULL) {
+        num_companies = atoi(buffer);
+    }
 
     for (int i = 0; i < num_companies; i++) {
         fscanf(file, "%s", companies[i].name);
@@ -48,7 +45,9 @@ void initialize_companies() {
     }
 
     for (int i = 0; i < num_companies; i++) {
-       fscanf(file, "%d", &companies[i].number_of_employees);
+        if (fgets(buffer, sizeof(buffer), file) != NULL) {
+            companies[i].number_of_employees = atoi(buffer);
+        }
     }
 
     fclose(file);
@@ -61,21 +60,26 @@ void initialize_employees() {
         return;
     }
 
-    int company_index, id, salary;
+    int company_index;
+    char buffer[10];
     char name[50], role[50];
-    int is_retired;
+    int id, salary, is_retired;
 
-    while (fscanf(file, "%d", &company_index) != EOF) {
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        company_index = atoi(buffer);
         if (company_index < 0 || company_index >= num_companies) {
             fprintf(stderr, "Invalid company index\n");
             continue;
         }
         for (int i = 0; i < companies[company_index].number_of_employees; i++) {
-            fscanf(file, "%d", &id);
+            fgets(buffer, sizeof(buffer), file);
+            id = atoi(buffer);
             fscanf(file, "%s", name);
             fscanf(file, "%s", role);
-            fscanf(file, "%d", &salary);
-            fscanf(file, "%d", &is_retired);
+            fgets(buffer, sizeof(buffer), file);
+            salary = atoi(buffer);
+            fgets(buffer, sizeof(buffer), file);
+            is_retired = atoi(buffer);
 
             struct employee employee;
             employee.id = id;
@@ -91,14 +95,13 @@ void initialize_employees() {
 }
 
 void show_companies() {
-    int n = num_companies;
-    if (n == 0) {
+    if (num_companies == 0) {
         printf("There are no companies registered at the moment.\n");
         printf("Type add in the terminal to add a new company.\n");
         return;
     }
     printf("The following companies are registered:\n");
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < num_companies; i++) {
         printf("Company: %s\n", companies[i].name);
     }
     printf("Type add in the terminal to add a new company.\n");
@@ -116,11 +119,12 @@ void add_company() {
     int number_of_employees;
     scanf("%d", &number_of_employees);
     companies[num_companies].number_of_employees = number_of_employees;
-    printf("\nType the employees of the company ( names ):\n");
+    printf("\nType the employees of the company (names):\n");
     for (int i = 0; i < number_of_employees; i++) {
         char name[50];
         scanf("%s", name);
         strcpy(companies[num_companies].employees[i].name, name);
+        companies[num_companies].employees[i].id = i + 1; // Initialize employee id
     }
     printf("Type the roles of the employees:\n");
     for (int i = 0; i < number_of_employees; i++) {
@@ -134,32 +138,43 @@ void add_company() {
         scanf("%d", &salary);
         companies[num_companies].employees[i].salary = salary;
     }
-    printf("Type if the employees are retired or not ( 1 for retired, 0 for not retired ):\n");
+    printf("Type if the employees are retired or not (1 for retired, 0 for not retired):\n");
     for (int i = 0; i < number_of_employees; i++) {
         int is_retired;
         scanf("%d", &is_retired);
         companies[num_companies].employees[i].is_retired = is_retired;
     }
-
+    FILE *file = fopen("companies_number_of_employees.txt", "a");
+    if (file == NULL) {
+        perror("Failed to open companies_number_of_employees.txt");
+        return;
+    }
+    fprintf(file, "%d\n", number_of_employees);
+    fclose(file);
     num_companies++;
+
+    file = fopen("employees.txt", "a");
+    if (file == NULL) {
+        perror("Failed to open employees.txt");
+        return;
+    }
+    for (int i = 0; i < number_of_employees; i++) {
+        fprintf(file, "%d\n%d\n%s\n%s\n%d\n%d\n", num_companies - 1, companies[num_companies - 1].employees[i].id, companies[num_companies - 1].employees[i].name, companies[num_companies - 1].employees[i].role, companies[num_companies - 1].employees[i].salary, companies[num_companies - 1].employees[i].is_retired);
+    }
+    fclose(file);
     printf("Company %s added successfully.\n", name);
 }
 
 int main(void) {
-
-    while(true) {
+    while (true) {
         initialize_companies();
         initialize_employees();
         show_companies();
         char command[50];
         scanf("%s", command);
-        if(command == "close")
+        if (strcmp(command, "close") == 0)
             return 0;
-        if(command == "add")
+        if (strcmp(command, "add") == 0)
             add_company();
-
-
-
     }
-
 }
