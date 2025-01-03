@@ -183,6 +183,8 @@ void commanding(void) {
     printf("close - to close the program\n");
     printf("add  - to add a company\n");
     printf("show - to show the employees of a company ( followed by the number associated with the company )\n");
+    printf("show-r to only show the non-retired employees of a company (followed by the index )\n");
+    printf("show-l to show all the companies names\n");
 
 }
 
@@ -222,6 +224,26 @@ int main(void) {
                 else
                     printf("Retired: No\n");
             }
+        }
+        if(strcmp(command, "show-r") == 0){
+            int index;
+            scanf("%d", &index);
+            if(index >= num_companies){
+                printf("Invalid index.\n");
+                continue;
+            }
+            printf("The employees of the company %s are:\n", companies[index].name);
+            for(int i = 0; i < companies[index].number_of_employees; i++) {
+                if(companies[index].employees[i].is_retired == 1){
+                printf("Employee %d:\n", i + 1);
+                printf("Name: %s\n", companies[index].employees[i].name);
+                printf("Role: %s\n", companies[index].employees[i].role);
+                printf("Salary: %d\n", companies[index].employees[i].salary);
+            }
+            }
+        }
+        if(strcmp(command, "show-l") == 0){
+            show_companies();
         }
     }
 }
