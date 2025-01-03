@@ -1,0 +1,34 @@
+0
+#fgij
+Andreea
+Manager
+1000
+false
+#kji
+Andrei
+Developer
+2000
+false
+1
+#kji
+Serban
+CEO
+5000
+false
+#kjil
+Mihai
+Developer
+3000
+true
+2
+#jknm
+Ionut
+Software Tester
+1600
+false
+3
+#aaao
+Cristina
+Web Designer
+2200
+false
