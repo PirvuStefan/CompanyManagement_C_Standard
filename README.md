@@ -39,6 +39,8 @@ show-r <index>: Show only non-retired employees of the company at the specified 
 
 show-l: Show the list of all registered companies.
 
+delete <index>: Delete the company at the specified index.
+
 close: Close the program.
 
 ## License

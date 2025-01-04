@@ -272,11 +272,13 @@ int main(void) {
         scanf("%s", command);
         if (strcmp(command, "close") == 0)
             return 0;
-        if(strcmp(command, "help") == 0)
-            commanding();
+        if(strcmp(command, "help") == 0){
+        commanding();
+        continue;
+        }
         if (strcmp(command, "add") == 0)
             add_company();
-        if(strcmp(command, "show") == 0){
+        else if(strcmp(command, "show") == 0){
             int index;
             scanf("%d", &index);
             if(index >= num_companies){
@@ -295,7 +297,7 @@ int main(void) {
                     printf("Retired: No\n");
             }
         }
-        if(strcmp(command, "show-r") == 0){
+        else if(strcmp(command, "show-r") == 0){
             int index;
             scanf("%d", &index);
             if(index >= num_companies){
@@ -320,10 +322,10 @@ int main(void) {
             }
             }
         }
-        if(strcmp(command, "show-l") == 0){
+        else if(strcmp(command, "show-l") == 0){
             show_companies();
         }
-        if(strcmp(command, "delete") == 0){
+        else if(strcmp(command, "delete") == 0){
             int index;
             scanf("%d", &index);
             delete_company(index);
