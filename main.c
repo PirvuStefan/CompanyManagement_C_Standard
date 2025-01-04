@@ -182,9 +182,9 @@ void add_company() {
         fprintf(file, "%d\n%s\n%s\n%d\n%d\n", companies[num_companies - 1].employees[i].id, companies[num_companies - 1].employees[i].name, companies[num_companies - 1].employees[i].role, companies[num_companies - 1].employees[i].salary, companies[num_companies - 1].employees[i].is_retired);
     }
     fclose(file);
-    file = fopen("companies.txt", "a");
-    fprintf(file, "\n%s", name);
-    fclose(file);
+   // file = fopen("companies.txt", "a");
+    //fprintf(file, "\n%s", name);
+    //fclose(file);
     printf("Company %s added successfully.\n", name);
 
     file = fopen("companies.txt", "r+");
