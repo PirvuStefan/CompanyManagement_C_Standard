@@ -128,7 +128,9 @@ void add_company() {
         int test = 100000 + rand() % 900000;
         test = test + rand() % 7;
         test = test + rand() % 11;
+        test = test + companies[num_companies].employees[i].name[0];
         // to make true random id ( at least closer than before)
+        // flaws: rand() is not truly random, it is pseudo-random
         companies[num_companies].employees[i].id = test + i + 1; // Initialize employee id
     }
     printf("Type the roles of the employees:\n");
