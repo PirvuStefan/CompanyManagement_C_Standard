@@ -169,7 +169,7 @@ void add_company() {
         perror("Failed to open companies_number_of_employees.txt");
         return;
     }
-    fprintf(file, "\n%d", number_of_employees);
+    fprintf(file, "%d", number_of_employees);
     fclose(file);
     num_companies++;
 
