@@ -105,9 +105,7 @@ void show_companies() {
     for (int i = 0; i < num_companies; i++) {
         printf("Company: %s\n", companies[i].name);
     }
-    printf("Type add in the terminal to add a new company.\n");
-    printf("Type show and the number associated with the company to see the employees of that company (indexing from 0).\n");
-    printf("Type 'close' to close the program.\n");
+
 }
 
 void add_company() {
@@ -306,7 +304,7 @@ int main(void) {
             }
             int i;
             for(i = 0; i < companies[index].number_of_employees; i++){
-                if(companies[index].employees[i].is_retired == 1) break;
+                if(companies[index].employees[i].is_retired == 0) break;
             }
             if(i == companies[index].number_of_employees){
                 printf("There are only retired employees in the company %s.\n", companies[index].name);
@@ -314,7 +312,7 @@ int main(void) {
             } // if the loop is not broken, then all the employees are retired
             printf("The employees still active of the company %s are:\n", companies[index].name);
             for(int i = 0; i < companies[index].number_of_employees; i++) {
-                if(companies[index].employees[i].is_retired == 1){
+                if(companies[index].employees[i].is_retired == 0){
                 printf("Employee %d:\n", i + 1);
                 printf("Name: %s\n", companies[index].employees[i].name);
                 printf("Role: %s\n", companies[index].employees[i].role);
