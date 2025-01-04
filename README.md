@@ -1,9 +1,9 @@
-## Company Management Program
+## Company Management Program  🖨️
 
 This project is a simple company management system written in C. 
 It allows you to manage companies and their employees, including adding new companies and displaying information about existing companies and their employees.
 
-## Features 🔌
+## Features  🔌
 
 Add new companies and their employees.
 Display a list of registered companies.
