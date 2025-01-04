@@ -17,7 +17,7 @@ companies.txt: A file containing the list of companies.
 companies_number_of_employees.txt: A file containing the number of employees for each company.
 employees.txt: A file containing the details of employees.
 
-## How to Use
+## How to Use  💬
 
 Compile the code:  
 gcc -o company_management main.c
@@ -27,7 +27,7 @@ Run the program:
 
 Or just put the main.c and the txt files in an IDE ( in the same directory ) and use it.
 
-## Commands: 
+## Commands: 💻
 
 help: Display the list of available commands.
 
