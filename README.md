@@ -25,6 +25,8 @@ gcc -o company_management main.c
 Run the program:  
 ./company_management
 
+Or just put the main.c and the txt files in an IDE ( in the same directory ) and use it.
+
 ## Commands: 
 
 help: Display the list of available commands.
