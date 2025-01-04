@@ -193,6 +193,55 @@ void commanding(void) {
 
 }
 
+void delete_company(int index) {
+    if (index < 0 || index >= num_companies) {
+        printf("Invalid index.\n");
+        return;
+    }
+
+    for (int i = index; i < num_companies - 1; i++) {
+        companies[i] = companies[i + 1];
+    }
+    num_companies--;
+
+    // Update the companies.txt file
+    FILE *file = fopen("companies.txt", "w");
+    if (file == NULL) {
+        perror("Failed to open companies.txt");
+        return;
+    }
+    fprintf(file, "%d\n", num_companies);
+    for (int i = 0; i < num_companies; i++) {
+        fprintf(file, "%s\n", companies[i].name);
+    }
+    fclose(file);
+
+    // Update the companies_number_of_employees.txt file
+    file = fopen("companies_number_of_employees.txt", "w");
+    if (file == NULL) {
+        perror("Failed to open companies_number_of_employees.txt");
+        return;
+    }
+    for (int i = 0; i < num_companies; i++) {
+        fprintf(file, "%d\n", companies[i].number_of_employees);
+    }
+    fclose(file);
+
+    // Update the employees.txt file
+    file = fopen("employees.txt", "w");
+    if (file == NULL) {
+        perror("Failed to open employees.txt");
+        return;
+    }
+    for (int i = 0; i < num_companies; i++) {
+        for (int j = 0; j < companies[i].number_of_employees; j++) {
+            fprintf(file, "%d\n%s\n%s\n%d\n%d\n", companies[i].employees[j].id, companies[i].employees[j].name, companies[i].employees[j].role, companies[i].employees[j].salary, companies[i].employees[j].is_retired);
+        }
+    }
+    fclose(file);
+
+    printf("Company deleted successfully.\n");
+}
 int main(void) {
     initialize_companies();
     initialize_employees();
@@ -257,6 +306,11 @@ int main(void) {
         }
         if(strcmp(command, "show-l") == 0){
             show_companies();
+        }
+        if(strcmp(command, "delete") == 0){
+            int index;
+            scanf("%d", &index);
+            delete_company(index);
         }
 
     }
