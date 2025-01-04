@@ -1,16 +1,16 @@
-## Company Management Program
+## Company Management Program  🖨️
 
 This project is a simple company management system written in C. 
 It allows you to manage companies and their employees, including adding new companies and displaying information about existing companies and their employees.
 
-## Features 🔌
+## Features  🔌
 
 Add new companies and their employees.
 Display a list of registered companies.
 Show detailed information about the employees of a specific company.
 Show only non-retired employees of a specific company.
 
-## Files
+## Files  ✉️
 
 main.c: The main source code file containing the implementation of the company management system.
 companies.txt: A file containing the list of companies.
@@ -25,13 +25,20 @@ gcc -o company_management main.c
 Run the program:  
 ./company_management
 
+Or just put the main.c and the txt files in an IDE ( in the same directory ) and use it.
+
 ## Commands: 
 
 help: Display the list of available commands.
+
 add: Add a new company and its employees.
+
 show <index>: Show the employees of the company at the specified index.
+
 show-r <index>: Show only non-retired employees of the company at the specified index.
+
 show-l: Show the list of all registered companies.
+
 close: Close the program.
 
 ## License
