@@ -18,11 +18,6 @@ Mihai
 Developer
 3000
 1
-123777
-Ionut
-Software Tester
-1600
-0
 234567
 Cristina
 Web Designer
@@ -38,16 +33,6 @@ kilo
 mnidbooss
 1200
 1
-116808
-afa
-boss
-12
-1
-443669
-lo
-sclav
-89
-0
 116808
 ppp
 sf
