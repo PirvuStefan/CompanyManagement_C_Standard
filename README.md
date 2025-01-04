@@ -10,7 +10,7 @@ Display a list of registered companies.
 Show detailed information about the employees of a specific company.
 Show only non-retired employees of a specific company.
 
-## Files
+## Files  ✉️
 
 main.c: The main source code file containing the implementation of the company management system.
 companies.txt: A file containing the list of companies.
