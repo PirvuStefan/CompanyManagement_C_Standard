@@ -28,10 +28,15 @@ Run the program:
 ## Commands: 
 
 help: Display the list of available commands.
+
 add: Add a new company and its employees.
+
 show <index>: Show the employees of the company at the specified index.
+
 show-r <index>: Show only non-retired employees of the company at the specified index.
+
 show-l: Show the list of all registered companies.
+
 close: Close the program.
 
 ## License
