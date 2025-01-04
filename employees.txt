@@ -1,7 +1,7 @@
 123546
 Andreea
 Manager
-1000
+12
 1
 123542
 Andrei
@@ -48,3 +48,8 @@ lo
 sclav
 89
 0
+116808
+ppp
+sf
+4000
+1

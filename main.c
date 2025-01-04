@@ -67,15 +67,16 @@ void initialize_employees() {
 
 
         for(int company_index = 0; company_index < num_companies;company_index++){
+
         for (int i = 0; i < companies[company_index].number_of_employees; i++) {
-            fgets(buffer, sizeof(buffer), file);
-            id = atoi(buffer);
-            fscanf(file, "%s", name);
-            fscanf(file, "%s", role);
-            fgets(buffer, sizeof(buffer), file);
-            salary = atoi(buffer);
-            fgets(buffer, sizeof(buffer), file);
-            is_retired = atoi(buffer);
+
+            fscanf(file, "%d\n", &id);
+            fgets(name, sizeof(name), file);
+            name[strcspn(name, "\n")] = 0; // Remove newline character
+            fgets(role, sizeof(role), file);
+            role[strcspn(role, "\n")] = 0; // Remove newline character
+            fscanf(file, "%d\n", &salary);
+            fscanf(file, "%d\n", &is_retired);
 
             struct employee employee;
             employee.id = id;
@@ -83,8 +84,10 @@ void initialize_employees() {
             strcpy(employee.role, role);
             employee.salary = salary;
             employee.is_retired = is_retired;
-            companies[company_index].employees[i] = employee;
+            companies[company_index].employees[i] = employee; // Initialize employee id
+
         }
+
 
 
     }
@@ -232,7 +235,15 @@ int main(void) {
                 printf("Invalid index.\n");
                 continue;
             }
-            printf("The employees of the company %s are:\n", companies[index].name);
+            int i;
+            for(i = 0; i < companies[index].number_of_employees; i++){
+                if(companies[index].employees[i].is_retired == 1) break;
+            }
+            if(i == companies[index].number_of_employees){
+                printf("There are only retired employees in the company %s.\n", companies[index].name);
+                continue;
+            } // if the loop is not broken, then all the employees are retired
+            printf("The employees still active of the company %s are:\n", companies[index].name);
             for(int i = 0; i < companies[index].number_of_employees; i++) {
                 if(companies[index].employees[i].is_retired == 1){
                 printf("Employee %d:\n", i + 1);
@@ -245,5 +256,6 @@ int main(void) {
         if(strcmp(command, "show-l") == 0){
             show_companies();
         }
+
     }
 }
