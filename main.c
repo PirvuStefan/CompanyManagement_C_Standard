@@ -131,7 +131,22 @@ void add_company() {
         test = test + companies[num_companies].employees[i].name[0];
         // to make true random id ( at least closer than before)
         // flaws: rand() is not truly random, it is pseudo-random
-        companies[num_companies].employees[i].id = test + i + 1; // Initialize employee id
+        while(true) {
+            int ok = 1;
+            for(int j = 0; j < num_companies; j++){
+                for(int k = 0; k < companies[j].number_of_employees; k++){
+                    if(companies[j].employees[k].id == test){
+                        ok = 0;
+                        break;
+                    }
+                }
+                if(ok == 0) break;
+            }
+            if(ok){
+            companies[num_companies].employees[i].id = test; // Initialize employee id
+                break;
+        }
+    } // id generation (not perfect)
     }
     printf("Type the roles of the employees:\n");
     for (int i = 0; i < number_of_employees; i++) {
@@ -188,8 +203,9 @@ void commanding(void) {
     printf("close - to close the program\n");
     printf("add  - to add a company\n");
     printf("show - to show the employees of a company ( followed by the number associated with the company )\n");
-    printf("show-r to only show the non-retired employees of a company (followed by the index )\n");
-    printf("show-l to show all the companies names\n");
+    printf("show-r - to only show the non-retired employees of a company (followed by the index )\n");
+    printf("show-l - to show all the companies names\n");
+    printf("delete - to delete a company ( followed by the index )\n");
 
 }
 
@@ -312,6 +328,7 @@ int main(void) {
             scanf("%d", &index);
             delete_company(index);
         }
+        else printf("Unknown command. Type 'help' to see the commands you can use.\n");
 
     }
 }

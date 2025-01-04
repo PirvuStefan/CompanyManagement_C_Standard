@@ -20,21 +20,11 @@ Developer
 1
 234567
 Cristina
-Web Designer
+WebDesigner
 2200
 0
-116808
-andreiciurca
-boss
-1200
-1
-116808
-kilo
-mnidbooss
-1200
-1
-116808
-ppp
-sf
-4000
-1
+999999
+Ana
+HR
+2000
+0
