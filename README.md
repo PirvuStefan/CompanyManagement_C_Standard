@@ -13,8 +13,11 @@ Show only non-retired employees of a specific company.
 ## Files  ✉️
 
 main.c: The main source code file containing the implementation of the company management system.
+
 companies.txt: A file containing the list of companies.
+
 companies_number_of_employees.txt: A file containing the number of employees for each company.
+
 employees.txt: A file containing the details of employees.
 
 ## How to Use  💬
@@ -25,7 +28,7 @@ gcc -o company_management main.c
 Run the program:  
 ./company_management
 
-Or just put the main.c and the txt files in an IDE ( in the same directory ) and use it.
+Or just put the main.c and the txt files in an IDE ( in the same directory ) and run it.
 
 ## Commands: 💻
 
