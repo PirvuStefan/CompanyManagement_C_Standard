@@ -30,7 +30,7 @@ Run the program:
 
 Or just put the main.c and the txt files in an IDE ( in the same directory ) and run it.
 
-## Commands: 💻
+## Commands 💻
 
 help: Display the list of available commands.
 
