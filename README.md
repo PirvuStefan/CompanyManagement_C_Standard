@@ -46,7 +46,7 @@ delete <index>: Delete the company at the specified index.
 
 close: Close the program.
 
-## License
+## License 🔒
 
 This is done strictly for a college project.
 If it was not obvious, this project is licensed under the MIT License.You can do whatever you want with it, modify it, distribute it.
